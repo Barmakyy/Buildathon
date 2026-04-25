@@ -29,7 +29,7 @@ export default function LandingPage() {
       <section className="relative px-6 py-24 md:py-36 flex flex-col items-center text-center overflow-hidden">
         <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-sm font-medium mb-10 shadow-sm">
           <Sparkles className="w-4 h-4 text-[#7ed300]" />
-          Powered by Google Gemini 3.1
+          Powered by Google Gemini 2.0 Flash
         </div>
         
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-8 max-w-5xl leading-[1.1]">
@@ -124,7 +124,7 @@ export default function LandingPage() {
           <p className="text-xl text-slate-700 leading-relaxed font-medium mb-12">
             In Kenyan public secondary schools, the average teacher-to-student ratio is 1:58. Personalised, 1-on-1 attention is physically impossible. 
             <br/><br/>
-            By leveraging Google's <span className="font-bold text-[#62aa00]">Gemini 3.1</span>, Elimu AI provides infinite patience, culturally relevant explanations, and 24/7 availability to every student with internet access.
+            By leveraging Google's <span className="font-bold text-[#62aa00]">Gemini 2.0 Flash</span>, Elimu AI provides infinite patience, culturally relevant explanations, and 24/7 availability to every student with internet access.
           </p>
           <button
             onClick={() => navigate('/tutor')}
@@ -143,7 +143,7 @@ export default function LandingPage() {
         </div>
         <p className="mb-2 font-medium">Built for the AI for Education Hackathon 2026</p>
         <p className="text-sm flex items-center justify-center gap-1.5">
-          Powered by <span className="font-bold text-slate-700">Vercel & Render</span> & <span className="font-bold text-[#62aa00]">Gemini 3.1</span>
+          Powered by <span className="font-bold text-slate-700">Vercel & Render</span> & <span className="font-bold text-[#62aa00]">Gemini 2.0 Flash</span>
         </p>
       </footer>
     </div>
