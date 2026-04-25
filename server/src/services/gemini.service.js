@@ -79,7 +79,7 @@ ${langInstruction}
 
 export async function streamChat(messages, subject, languageMode) {
   const model = getGenAI().getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: buildSystemPrompt(subject, languageMode),
   });
 
@@ -98,7 +98,7 @@ export async function streamChat(messages, subject, languageMode) {
 
 export async function generateQuiz(topic, subject, languageMode) {
   const model = getGenAI().getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     generationConfig: {
       responseMimeType: 'application/json',
     },
@@ -137,7 +137,7 @@ Make questions progressively harder. Use practical, real-world Kenyan contexts w
 
 export async function getSuggestedTopics(subject) {
   const model = getGenAI().getGenerativeModel({
-    model: 'gemini-2.0-flash',
+    model: 'gemini-2.5-flash',
     generationConfig: { responseMimeType: 'application/json' },
   });
 

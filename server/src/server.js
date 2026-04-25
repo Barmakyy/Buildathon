@@ -21,17 +21,31 @@ app.use(morgan('dev'));
 
 // CORS - Handle multiple origin formats
 const clientUrl = process.env.CLIENT_URL || '*';
+const isProd = process.env.NODE_ENV === 'production';
+
+const rawOrigins = clientUrl
+  .split(',')
+  .map((value) => value.trim())
+  .filter(Boolean);
+
+if (!isProd) {
+  rawOrigins.push('http://localhost:5173');
+}
+
+const allowedOrigins = rawOrigins.map((origin) => origin.replace(/\/$/, ''));
+
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow if no origin (same origin requests)
     if (!origin) return callback(null, true);
-    
+
+    if (clientUrl === '*') return callback(null, true);
+
     // Normalize URLs (remove trailing slash)
     const normalizedOrigin = origin.replace(/\/$/, '');
-    const normalizedClientUrl = clientUrl.replace(/\/$/, '');
-    
+
     // Allow if it matches
-    if (normalizedOrigin === normalizedClientUrl || clientUrl === '*') {
+    if (allowedOrigins.includes(normalizedOrigin)) {
       callback(null, true);
     } else {
       console.log(`CORS blocked request from: ${origin}`);
@@ -96,7 +110,7 @@ async function startServer() {
 
   app.listen(PORT, '0.0.0.0', () => {
     console.log('🚀 Elimu AI Server running on port', PORT);
-    console.log('🤖 Gemini model: gemini-1.5-flash');
+    console.log('🤖 Gemini model: gemini-2.5-flash');
   });
 }
 
