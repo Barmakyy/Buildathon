@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="flex items-center gap-2">
         <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-slate-600 bg-slate-50 border border-slate-200 shadow-sm">
           <Zap className="w-3.5 h-3.5 text-[#7ed300] fill-[#7ed300]" />
-          <span className="hidden md:inline">Gemini 1.5 Flash</span>
+          <span className="hidden md:inline">Gemini 3.1</span>
         </span>
       </div>
     </nav>
