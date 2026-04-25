@@ -19,14 +19,32 @@ const PORT = process.env.PORT || 8080;
 app.use(helmet());
 app.use(morgan('dev'));
 
-// CORS
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-  })
-);
+// CORS - Handle multiple origin formats
+const clientUrl = process.env.CLIENT_URL || '*';
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow if no origin (same origin requests)
+    if (!origin) return callback(null, true);
+    
+    // Normalize URLs (remove trailing slash)
+    const normalizedOrigin = origin.replace(/\/$/, '');
+    const normalizedClientUrl = clientUrl.replace(/\/$/, '');
+    
+    // Allow if it matches
+    if (normalizedOrigin === normalizedClientUrl || clientUrl === '*') {
+      callback(null, true);
+    } else {
+      console.log(`CORS blocked request from: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
