@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: elimu-ai-server
+    runtime: node
+    buildCommand: cd server && pnpm install
+    startCommand: cd server && node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        fromEnv: GEMINI_API_KEY
+      - key: MONGODB_URI
+        fromEnv: MONGODB_URI
+      - key: CLIENT_URL
+        fromEnv: CLIENT_URL
+      - key: PORT
+        value: 8080

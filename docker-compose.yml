@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - MONGODB_URI=${MONGODB_URI}
+      - CLIENT_URL=http://localhost:5173
+      - NODE_ENV=development
+    volumes:
+      - ./server/src:/app/src
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://localhost:8080
+    ports:
+      - "5173:8080"
+    depends_on:
+      - server
+    restart: unless-stopped
